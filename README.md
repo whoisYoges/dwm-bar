@@ -3,6 +3,9 @@ The simpleset unclickable dwm bar setup.
 
 It is a simple bash script to show battery(Percentage + status), volume(SPEEKER + MIC) and date and time in your dwm bar.
 
+### Preview
+![unclickable dwm bar](dwm_bar.png)
+
 ### Dependencies
 - pulseaudio
 - xorg-xsetrot
