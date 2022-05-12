@@ -9,6 +9,7 @@ It is a simple bash script to show battery(Percentage + status), volume(SPEEKER 
 ### Dependencies
 - pulseaudio
 - xorg-xsetrot
+- a unicode font (To display unicode icons; i am using ttf-font-awesome)
 
 ### Installation and usage
 - Get [dwm-bar](dwm-bar) in your machine, make it executable and place it anywhere safe you want.

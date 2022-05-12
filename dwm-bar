@@ -5,7 +5,11 @@ dwm_battery () {
     # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
     CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
     STATUS=$(cat /sys/class/power_supply/BAT0/status)
-    printf "BAT: %s%% %s" "$CHARGE" "$STATUS" 
+    if [ "$STATUS" = "Charging" ]; then
+        printf "🔌 %s%% %s" "$CHARGE" "$STATUS"
+    else
+        printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
+    fi
     printf "%s\n" "$SEP"
 }
 
@@ -13,10 +17,10 @@ dwm_pulse_vol () {
     TOGSPEEKER=$(pactl get-sink-mute 0)
     if [ "$TOGSPEEKER" = "Mute: yes" ]; then
         VOLSPEEKER=$(pactl get-sink-volume 0 | awk '{print $5}')
-        printf "VOL: M (%s)" "$VOLSPEEKER"
+        printf " %s" "$VOLSPEEKER"
     else
         VOLSPEEKER=$(pactl get-sink-volume 0 | awk '{print $5}')
-        printf "VOL: %s" "$VOLSPEEKER"
+        printf " %s" "$VOLSPEEKER"
     fi
     printf "%s\n" "$SEP"
 }
@@ -25,16 +29,16 @@ dwm_pulse_mic () {
     TOGMIC=$(pactl get-source-mute 1)
     if [ "$TOGMIC" = "Mute: yes" ]; then
         VOLMIC=$(pactl get-source-volume 1 | awk '{print $5}')
-        printf "MIC: M (%s)" "$VOLMIC"
+        printf " %s" "$VOLMIC"
     else
         VOLMIC=$(pactl get-source-volume 1 | awk '{print $5}')
-        printf "MIC: %s" "$VOLMIC"
+        printf " %s" "$VOLMIC"
     fi
     printf "%s\n" "$SEP"
 }
 
 dwm_date () {
-    printf "%s" "$(date "+%a, %m:%d:%Y, %H:%M:%S")"
+    printf " %s" "$(date "+%a, %m:%d:%Y, %H:%M:%S")"
 }
 
 # Update dwm status bar every second
